@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.appspot.rockwotj_movie_quotes.moviequotes.model.MovieQuote;
 
 public class MovieQuoteArrayAdapter extends ArrayAdapter<MovieQuote> {
 
