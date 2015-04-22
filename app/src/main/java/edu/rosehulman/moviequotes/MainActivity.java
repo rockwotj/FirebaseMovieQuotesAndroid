@@ -16,22 +16,22 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
 import java.util.ArrayList;
 
 public class MainActivity extends ListActivity {
 
     public static final String MQ = "MQ";
-
+    private MovieQuoteArrayAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
         getListView().setMultiChoiceModeListener(new MyMultiClickListener());
-
+        mAdapter = new MovieQuoteArrayAdapter(this);
+        setListAdapter(mAdapter);
     }
 
     private class MyMultiClickListener implements MultiChoiceModeListener {
@@ -80,11 +80,9 @@ public class MainActivity extends ListActivity {
 
         private void deleteSelectedItems() {
             for (MovieQuote quote : mQuotesToDelete) {
-                ((MovieQuoteArrayAdapter) getListAdapter()).remove(quote);
-                // TODO: Implement deletion on server.
-
+                mAdapter.removeItem(quote);
             }
-            ((MovieQuoteArrayAdapter) getListAdapter()).notifyDataSetChanged();
+            mAdapter.notifyDataSetChanged();
         }
     }
 
@@ -115,16 +113,10 @@ public class MainActivity extends ListActivity {
                         Toast.makeText(MainActivity.this,
                                 "Got the title " + movieTitleText + " and quote " + movieQuoteText, Toast.LENGTH_LONG)
                                 .show();
-                        // add the data and send to server
                         currentQuote.setMovie(movieTitleText);
                         currentQuote.setQuote(movieQuoteText);
-                        // CONSIDER: Appears at the bottom initially, but
-                        // inserts to the top on the backend. Could store
-                        // ArrayList separately and make adapter a field.
-                        ((MovieQuoteArrayAdapter) getListAdapter()).notifyDataSetChanged();
-                        // TODO: Insert quote into Firebase
+                        mAdapter.editItem(currentQuote, movieTitleText, movieQuoteText);
                         dismiss();
-
                     }
                 });
 
@@ -155,7 +147,6 @@ public class MainActivity extends ListActivity {
             case R.id.add:
                 // add
                 addItem();
-
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -181,16 +172,8 @@ public class MainActivity extends ListActivity {
                                 "Got the title " + movieTitleText + " and quote " + movieQuoteText, Toast.LENGTH_LONG)
                                 .show();
                         // add the data and send to server
-                        MovieQuote currentQuote = new MovieQuote();
-                        currentQuote.setMovie(movieTitleText);
-                        currentQuote.setQuote(movieQuoteText);
-                        ((MovieQuoteArrayAdapter) getListAdapter()).add(currentQuote);
-                        ((MovieQuoteArrayAdapter) getListAdapter()).notifyDataSetChanged();
-                        // CONSIDER: Appears at the bottom initially, but
-                        // inserts to
-                        // the top on the backend. Could store ArrayList
-                        // separately and make adapter a field.
-                        // TODO: insert a movie on the server
+                        MovieQuote currentQuote = new MovieQuote(null, movieTitleText, movieQuoteText);
+                        mAdapter.addItem(currentQuote);
                         dismiss();
                     }
                 });

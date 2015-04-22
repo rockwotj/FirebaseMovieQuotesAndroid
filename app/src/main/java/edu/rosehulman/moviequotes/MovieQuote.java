@@ -2,18 +2,24 @@ package edu.rosehulman.moviequotes;
 
 /**
  *
- * The model for a movie quote
+ * The model for a moviequote
  *
  * Created by rockwotj on 4/22/2015.
  */
 public class MovieQuote {
 
+    private String key;
     private String movie;
     private String quote;
 
-    public MovieQuote(String movie, String quote) {
+    public MovieQuote(String key, String movie, String quote) {
+        this.key = key;
         this.movie = movie;
         this.quote = quote;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     public String getMovie() {
