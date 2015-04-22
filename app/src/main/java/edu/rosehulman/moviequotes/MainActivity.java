@@ -181,9 +181,7 @@ public class MainActivity extends ListActivity {
                                 "Got the title " + movieTitleText + " and quote " + movieQuoteText, Toast.LENGTH_LONG)
                                 .show();
                         // add the data and send to server
-                        MovieQuote currentQuote = new MovieQuote();
-                        currentQuote.setMovie(movieTitleText);
-                        currentQuote.setQuote(movieQuoteText);
+                        MovieQuote currentQuote = new MovieQuote(movieTitleText, movieQuoteText);
                         ((MovieQuoteArrayAdapter) getListAdapter()).add(currentQuote);
                         ((MovieQuoteArrayAdapter) getListAdapter()).notifyDataSetChanged();
                         // CONSIDER: Appears at the bottom initially, but
