@@ -1,0 +1,28 @@
+{
+  "quotes" : {
+    "-JnHqRle6xTHMC2crgoL" : {
+      "movie" : "Terminator 2",
+      "quote" : "I'll be back!"
+    },
+    "-JnHrxI7U59xhKKKOuXk" : {
+      "movie" : "Every Code Tutorial Ever...",
+      "quote" : "Hello, World!"
+    },
+    "-JnIatYwzVhBmm3GPMk9" : {
+      "movie" : "The Lego Movie",
+      "quote" : "Everything is Awesome"
+    },
+    "-JnIb7oeomj9w3S6XqLz" : {
+      "movie" : "The Dark Knight",
+      "quote" : "I'm Batman"
+    },
+    "-JnM84yjWL1q0xcVb-le" : {
+      "movie" : "Titanic",
+      "quote" : "I'm king of the world"
+    },
+    "-JnOt5RkW0uLsNOatgdE" : {
+      "movie" : "Monty Python and the Holy Grail",
+      "quote" : "She turned me into a newt!"
+    }
+  }
+}

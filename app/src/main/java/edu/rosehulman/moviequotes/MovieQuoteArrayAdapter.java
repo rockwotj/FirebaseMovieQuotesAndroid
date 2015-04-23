@@ -1,7 +1,9 @@
 package edu.rosehulman.moviequotes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -38,17 +40,23 @@ public class MovieQuoteArrayAdapter extends BaseAdapter implements ChildEventLis
 
     public void removeItem(MovieQuote movieQuote) {
         //TODO: Remove data from Firebase
-
+        mFirebase.child(movieQuote.getKey()).removeValue();
     }
 
     public void addItem(MovieQuote movieQuote) {
         //TODO: Push new data to Firebase
-
+        Map<String, String> mq = new HashMap<String, String>();
+        mq.put("movie", movieQuote.getMovie());
+        mq.put("quote", movieQuote.getQuote());
+        mFirebase.push().setValue(mq);
     }
 
-    public void editItem(MovieQuote movieQuote, String newMovie, String newQuote) {
+    public void updateItem(MovieQuote movieQuote, String newMovie, String newQuote) {
         //TODO: Push changes to Firebase
-
+        Map<String, String> mq = new HashMap<String, String>();
+        mq.put("movie", newMovie);
+        mq.put("quote", newQuote);
+        mFirebase.child(movieQuote.getKey()).setValue(mq);
     }
 
     @Override
@@ -115,11 +123,11 @@ public class MovieQuoteArrayAdapter extends BaseAdapter implements ChildEventLis
 
     @Override
     public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
-
+        // Do Nothing
     }
 
     @Override
     public void onCancelled(FirebaseError firebaseError) {
-
+        // Do Nothing
     }
 }

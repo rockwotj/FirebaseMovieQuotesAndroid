@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
 import java.util.ArrayList;
 
 public class MainActivity extends ListActivity {
@@ -115,7 +114,7 @@ public class MainActivity extends ListActivity {
                                 .show();
                         currentQuote.setMovie(movieTitleText);
                         currentQuote.setQuote(movieQuoteText);
-                        mAdapter.editItem(currentQuote, movieTitleText, movieQuoteText);
+                        mAdapter.updateItem(currentQuote, movieTitleText, movieQuoteText);
                         dismiss();
                     }
                 });
@@ -189,7 +188,7 @@ public class MainActivity extends ListActivity {
         };
         df.show(getFragmentManager(), "");
     }
-    }
+}
 
 
 

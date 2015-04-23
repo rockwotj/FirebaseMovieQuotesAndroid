@@ -1,9 +1,8 @@
 package edu.rosehulman.moviequotes;
 
 /**
- *
  * The model for a moviequote
- *
+ * <p/>
  * Created by rockwotj on 4/22/2015.
  */
 public class MovieQuote {
