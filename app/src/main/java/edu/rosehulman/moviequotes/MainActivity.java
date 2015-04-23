@@ -170,7 +170,6 @@ public class MainActivity extends ListActivity {
                         Toast.makeText(MainActivity.this,
                                 "Got the title " + movieTitleText + " and quote " + movieQuoteText, Toast.LENGTH_LONG)
                                 .show();
-                        // add the data and send to server
                         MovieQuote currentQuote = new MovieQuote(null, movieTitleText, movieQuoteText);
                         mAdapter.addItem(currentQuote);
                         dismiss();
