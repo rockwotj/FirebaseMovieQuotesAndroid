@@ -15,5 +15,6 @@
     <string name="edit_dialog_title">Update quote</string>
     <string name="context_delete_item_text">Delete</string>
     <string name="context_delete_title">Select movies to delete</string>
+    <string name="done">Done</string>
 
 </resources>

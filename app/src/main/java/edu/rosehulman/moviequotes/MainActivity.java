@@ -3,6 +3,8 @@ package edu.rosehulman.moviequotes;
 import android.app.DialogFragment;
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -93,9 +95,9 @@ public class MainActivity extends ListActivity {
         DialogFragment df = new DialogFragment() {
             @Override
             public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                View view = inflater.inflate(R.layout.dialog_add, container);
+                View view = inflater.inflate(R.layout.dialog_edit, container);
                 getDialog().setTitle(getString(R.string.edit_dialog_title));
-                final Button confirmButton = (Button) view.findViewById(R.id.add_dialog_ok);
+                //final Button confirmButton = (Button) view.findViewById(R.id.add_dialog_ok);
                 final Button cancelButton = (Button) view.findViewById(R.id.add_dialog_cancel);
                 final EditText movieTitleEditText = (EditText) view.findViewById(R.id.add_dialog_movie_title);
                 final EditText movieQuoteEditText = (EditText) view.findViewById(R.id.add_dialog_movie_quote);
@@ -104,20 +106,42 @@ public class MainActivity extends ListActivity {
                 movieTitleEditText.setText(currentQuote.getMovie());
                 movieQuoteEditText.setText(currentQuote.getQuote());
 
-                confirmButton.setOnClickListener(new OnClickListener() {
+                TextWatcher tw = new TextWatcher() {
                     @Override
-                    public void onClick(View v) {
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
                         String movieTitleText = movieTitleEditText.getText().toString();
                         String movieQuoteText = movieQuoteEditText.getText().toString();
-                        Toast.makeText(MainActivity.this,
-                                "Got the title " + movieTitleText + " and quote " + movieQuoteText, Toast.LENGTH_LONG)
-                                .show();
-                        currentQuote.setMovie(movieTitleText);
-                        currentQuote.setQuote(movieQuoteText);
                         mAdapter.updateItem(currentQuote, movieTitleText, movieQuoteText);
-                        dismiss();
                     }
-                });
+                };
+
+                movieQuoteEditText.addTextChangedListener(tw);
+                movieQuoteEditText.addTextChangedListener(tw);
+
+//                confirmButton.setOnClickListener(new OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String movieTitleText = movieTitleEditText.getText().toString();
+//                        String movieQuoteText = movieQuoteEditText.getText().toString();
+//                        Toast.makeText(MainActivity.this,
+//                                "Got the title " + movieTitleText + " and quote " + movieQuoteText, Toast.LENGTH_LONG)
+//                                .show();
+//                        currentQuote.setMovie(movieTitleText);
+//                        currentQuote.setQuote(movieQuoteText);
+//                        mAdapter.updateItem(currentQuote, movieTitleText, movieQuoteText);
+//                        dismiss();
+//                    }
+//                });
 
                 cancelButton.setOnClickListener(new OnClickListener() {
                     @Override
