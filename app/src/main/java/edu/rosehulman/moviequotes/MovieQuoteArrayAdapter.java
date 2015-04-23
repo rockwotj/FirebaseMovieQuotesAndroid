@@ -90,7 +90,7 @@ public class MovieQuoteArrayAdapter extends BaseAdapter implements ChildEventLis
         String key = dataSnapshot.getKey();
         String movie = dataSnapshot.child("movie").getValue(String.class);
         String quote = dataSnapshot.child("quote").getValue(String.class);
-        mMovieQuotes.add(new MovieQuote(key, movie, quote));
+        mMovieQuotes.add(0, new MovieQuote(key, movie, quote));
         notifyDataSetChanged();
     }
 
